@@ -27,7 +27,18 @@ class App extends Component {
     })
   };
 
+  removeCharListener = (char) => {
+    let word = this.state.word;
+    let reducedWordArray = this.state.word.split(char);
+    word = reducedWordArray.join('');
+
+    this.setState({
+      word: word
+    })
+  };
+
   render() {
+    let wordArray = [...this.state.word]
     return (
       <div className="App">
         <ol>
@@ -53,12 +64,12 @@ class App extends Component {
             create CharComponent as inline box - style DONE
           </li>
           <li>Render a list of CharComponents where each CharComponent receives a different letter of the entered text (in the initial input field) as a prop.
-            render a list - one component per character
-            pass character as a prop
-            chars are in boxes
-            render the list in the app component
-            when char clicked - remove char from input text
-            affect text in the input field - bound
+            render a list - one component per character DONE
+            pass character as a prop DONE
+            chars are in boxes DONE
+            render the list in the app component DONE
+            when char clicked - remove char from input text DONE
+            affect text in the input field - bound DONE
           </li>
           <li>When you click a CharComponent, it should be removed from the entered text.</li>
         </ol>
@@ -75,10 +86,11 @@ class App extends Component {
         <p>{this.state.length}</p>
         <Validation length={this.state.length} />
         <div>
-          {[...this.state.word].map((char) => {
+          {wordArray.map((char, index) => {
             return (
               <Char char={char}
-                key={} />
+                key={index}
+                click={() => this.removeCharListener(char)} />
             )
           })}
         </div>
