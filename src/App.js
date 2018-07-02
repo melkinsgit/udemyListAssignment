@@ -73,7 +73,7 @@ class App extends Component {
             when char clicked - remove char from input text DONE
             affect text in the input field - bound DONE
           </li>
-          <li>When you click a CharComponent, it should be removed from the entered text.</li>
+          <li>When you click a CharComponent, it should be removed from the entered text. DONE</li>
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!
           map and splice not available to array of chars as string
