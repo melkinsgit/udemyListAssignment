@@ -27,10 +27,12 @@ class App extends Component {
     })
   };
 
-  removeCharListener = (char) => {
-    let word = this.state.word;
-    let reducedWordArray = this.state.word.split(char);
-    word = reducedWordArray.join('');
+  removeCharListener = (index) => {
+    let wordArray = this.state.word.split('');
+    wordArray = [...this.state.word];
+    wordArray.splice(index, 1);
+
+    const word = wordArray.join('');
 
     this.setState({
       word: word
@@ -39,6 +41,17 @@ class App extends Component {
 
   render() {
     let wordArray = [...this.state.word]
+
+    let charList = <div>
+      {wordArray.map((char, index) => {
+        return (
+          <Char char={char}
+            key={index}
+            click={() => this.removeCharListener(index)} />
+        )
+      })}
+    </div>
+
     return (
       <div className="App">
         <ol>
@@ -85,15 +98,7 @@ class App extends Component {
           onChange={event => this.textChangedHandler(event)} />
         <p>{this.state.length}</p>
         <Validation length={this.state.length} />
-        <div>
-          {wordArray.map((char, index) => {
-            return (
-              <Char char={char}
-                key={index}
-                click={() => this.removeCharListener(char)} />
-            )
-          })}
-        </div>
+        {charList}
       </div>
     );
   }
