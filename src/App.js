@@ -5,25 +5,14 @@ import Char from './Char/Char'
 
 class App extends Component {
   state = {
-    word: '',
-    length: 0
+    word: ''
   };
 
   textChangedHandler = (event) => {
-    // const words = this.state.words;
     const word = event.target.value;
-    const length = event.target.value.length;
-    // const word = { 
-    //   id: 0, 
-    //   word: event.target.value, 
-    //   length: event.target.value.length };
-
-    // words.push(word);
 
     this.setState({
-      word: word,
-      length: length
-      // wordCount: this.state.wordCount++
+      word: word
     })
   };
 
@@ -96,8 +85,8 @@ class App extends Component {
           type="text"
           value={this.state.word}
           onChange={event => this.textChangedHandler(event)} />
-        <p>{this.state.length}</p>
-        <Validation length={this.state.length} />
+        <p>{this.state.word.length}</p>
+        <Validation length={this.state.word.length} />
         {charList}
       </div>
     );
